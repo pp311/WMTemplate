@@ -1,7 +1,9 @@
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -169,8 +171,8 @@ public static class ServiceExtension
 					Array.Empty<string>()
 				}
 			});
-			var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-			config.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+			// var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+			// config.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 		});
 
 		return services;

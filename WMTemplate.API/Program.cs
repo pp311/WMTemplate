@@ -16,6 +16,7 @@ builder.Services.AddControllers()
 builder.Services
     .ConfigureCors()
     .ConfigureDbContext(builder.Configuration)
+    .ConfigureIdentity()
     .AddSwagger("WMTemplate API v1")
     .AddRepositories()
     .AddServices()
@@ -34,7 +35,7 @@ await app.MigrateDatabaseAsync();
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
-	app.UseSwaggerUI();
+    app.UseSwaggerUI(c => { c.ConfigObject.AdditionalItems.Add("persistAuthorization", "true"); });
 }
 
 app.UseSerilogRequestLogging();
